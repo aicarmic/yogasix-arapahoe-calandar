@@ -61,8 +61,8 @@ def fetch_schedule_api():
         if not title or not instructor or not start_raw or not end_raw:
             continue
 
-        # Preserve original logic: Drop Staff placeholders and Mobility
-        if "mobility" in title.lower() or instructor.lower() == "staff":
+        # Preserve original logic: Drop Staff placeholders
+        if instructor.lower() == "staff":
             continue
 
         # Format Description for iCalendar format (requires literal \n strings)
