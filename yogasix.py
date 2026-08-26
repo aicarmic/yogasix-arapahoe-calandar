@@ -6,6 +6,9 @@ from playwright.sync_api import sync_playwright
 URL = "https://www.yogasix.com/location/arapahoe"
 LOCATION = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
 
+# List of known valid instructor name formats on the Arapahoe schedule
+KNOWN_CLASSES = ["Y6 101", "Y6 Restore", "Y6 Slow Flow", "Y6 Hot", "Y6 Power", "Y6 Sculpt", "Workshop"]
+
 def parse_time(time_str, date_str):
     match = re.match(r"(\d+:\d+[ap]m)-(\d+:\d+[ap]m)", time_str.strip(), re.IGNORECASE)
     if not match:
@@ -24,9 +27,30 @@ def parse_time(time_str, date_str):
     end_dt = datetime.strptime(f"{current_year}-{month:02d}-{day:02d} {end_t.upper()}", "%Y-%m-%d %I:%M%p")
     return start_dt, end_dt
 
+def extract_instructor(lines):
+    for line in lines:
+        cleaned = line.strip()
+        # Look for "Firstname L." format (e.g., "Bethany S.", "Jennifer R.", "Addyson M.")
+        if re.match(r"^[A-Z][a-z]+ [A-Z]\.?$", cleaned):
+            if cleaned.lower() != "staff":
+                return cleaned
+    return None
+
+def extract_title(lines):
+    for line in lines:
+        cleaned = line.strip()
+        # Exclude Mobility immediately
+        if "mobility" in cleaned.lower():
+            return None
+        # Check against recognized class formats
+        for valid_cls in KNOWN_CLASSES:
+            if valid_cls.lower() in cleaned.lower():
+                return cleaned
+    return None
+
 def fetch_schedule():
-    events = []
-    seen_keys = set()
+    # Map keyed by start_dt isoformat string to prevent simultaneous room conflicts
+    slot_events = {}
 
     with sync_playwright() as p:
         print(f"Navigating to {URL}...")
@@ -37,7 +61,7 @@ def fetch_schedule():
         page = context.new_page()
 
         page.goto(URL, wait_until="domcontentloaded")
-        page.wait_for_timeout(3000)
+        page.wait_for_timeout(3500)
 
         for week in range(2):
             print(f"Scraping Week {week + 1}...")
@@ -55,44 +79,47 @@ def fetch_schedule():
                     tab.click()
                     page.wait_for_timeout(400)
 
-                    cards = page.query_selector_all(".c-schedule__item, .schedule-item, div[class*='schedule']")
+                    # Query only actual class items, avoiding parent wrappers
+                    cards = page.query_selector_all(".c-schedule__item, .schedule-item, .c-schedule-item")
+                    if not cards:
+                        # Fallback to direct article/item cards if layout changes
+                        cards = page.query_selector_all("article, [class*='class-card']")
+
                     for card in cards:
                         if not card.is_visible():
                             continue
+
                         text = card.inner_text()
                         lines = [l.strip() for l in text.split("\n") if l.strip()]
-                        
-                        # Match valid class titles
-                        title = next((l for l in lines if any(k in l for k in ["Y6", "Flow", "Sculpt", "Restore", "101", "Workshop"])), None)
-                        
-                        # Filter 1: Exclude Mobility classes
-                        if title and "mobility" in title.lower():
+
+                        title = extract_title(lines)
+                        if not title:
                             continue
 
                         time_range = next((l for l in lines if re.search(r"\d+:\d+[ap]m-\d+:\d+[ap]m", l, re.I)), None)
-                        instructor = next((l for l in lines if re.search(r"^[A-Z][a-z]+ [A-Z]\.?$", l)), None)
+                        instructor = extract_instructor(lines)
 
-                        # Filter 2: Drop unassigned / placeholder staff duplicates
-                        if not instructor or instructor.strip().lower() == "staff":
+                        # Drop if no explicit instructor or if it's Staff
+                        if not instructor:
                             continue
 
-                        if title and time_range:
+                        if time_range:
                             start_dt, end_dt = parse_time(time_range, tab_text)
                             if start_dt and end_dt:
-                                # Deduplicate on title + start time
-                                key = (title, start_dt.isoformat())
-                                if key not in seen_keys:
-                                    seen_keys.add(key)
-                                    events.append({
-                                        "title": title,
-                                        "instructor": instructor,
-                                        "start": start_dt,
-                                        "end": end_dt,
-                                        "desc": f"Instructor: {instructor}\nStudio: YogaSix Arapahoe"
-                                    })
+                                time_key = start_dt.isoformat()
+                                
+                                # Single studio room deduplication: Keep the valid instructor session
+                                slot_events[time_key] = {
+                                    "title": title,
+                                    "instructor": instructor,
+                                    "start": start_dt,
+                                    "end": end_dt,
+                                    "desc": f"Instructor: {instructor}\nStudio: YogaSix Arapahoe"
+                                }
         browser.close()
 
-    print(f"Total unique classes captured: {len(events)}")
+    events = sorted(slot_events.values(), key=lambda x: x["start"])
+    print(f"Total verified classes captured: {len(events)}")
     return events
 
 def build_ics(events, output_path="public/schedule.ics"):
