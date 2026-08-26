@@ -62,13 +62,24 @@ def fetch_schedule():
                         text = card.inner_text()
                         lines = [l.strip() for l in text.split("\n") if l.strip()]
                         
-                        title = next((l for l in lines if any(k in l for k in ["Y6", "Flow", "Sculpt", "Restore", "Mobility", "101", "Workshop"])), None)
+                        # Match valid class titles
+                        title = next((l for l in lines if any(k in l for k in ["Y6", "Flow", "Sculpt", "Restore", "101", "Workshop"])), None)
+                        
+                        # Filter 1: Exclude Mobility classes
+                        if title and "mobility" in title.lower():
+                            continue
+
                         time_range = next((l for l in lines if re.search(r"\d+:\d+[ap]m-\d+:\d+[ap]m", l, re.I)), None)
-                        instructor = next((l for l in lines if re.search(r"^[A-Z][a-z]+ [A-Z]\.?$", l)), "Staff")
+                        instructor = next((l for l in lines if re.search(r"^[A-Z][a-z]+ [A-Z]\.?$", l)), None)
+
+                        # Filter 2: Drop unassigned / placeholder staff duplicates
+                        if not instructor or instructor.strip().lower() == "staff":
+                            continue
 
                         if title and time_range:
                             start_dt, end_dt = parse_time(time_range, tab_text)
                             if start_dt and end_dt:
+                                # Deduplicate on title + start time
                                 key = (title, start_dt.isoformat())
                                 if key not in seen_keys:
                                     seen_keys.add(key)
@@ -77,7 +88,7 @@ def fetch_schedule():
                                         "instructor": instructor,
                                         "start": start_dt,
                                         "end": end_dt,
-                                        "desc": f"Instructor: {instructor}\\nStudio: YogaSix Arapahoe"
+                                        "desc": f"Instructor: {instructor}\nStudio: YogaSix Arapahoe"
                                     })
         browser.close()
 
