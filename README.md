@@ -12,8 +12,13 @@ Some may prefer to have the Y6 class schedule on their own personal calendar (Go
 
 ---
 
-## 📅 Add to your Calendar (Subscription):
+## 📅 INSTRUCTIONS: Add Y6 Class Schedule to your Calendar
 Subscribe directly in your calendar client of choice using the following URL:
-
 https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics 
-webcal://aicarmic.github.io/yogasix-arapahoe-calendar/schedule.ics
+
+### Google Calendar
+1. Open Google Calendar in your browser.
+2. On the left sidebar, find Other calendars and click the `+` icon.
+3. Select `From URL`.
+4. Paste the calendar URL: [https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics](https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics)
+5. Click Add calendar.
