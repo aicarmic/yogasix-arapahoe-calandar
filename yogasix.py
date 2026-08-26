@@ -6,7 +6,14 @@ from playwright.sync_api import sync_playwright
 URL = "https://www.yogasix.com/location/arapahoe"
 LOCATION = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
 
-# List of known valid instructor name formats on the Arapahoe schedule
+# Known Arapahoe instructor roster for authoritative matching
+KNOWN_INSTRUCTORS = [
+    "Addyson M", "Jennifer R", "Bethany S", "Jinelle S", 
+    "Liliana M", "Lauren K", "Kelly K", "Belleh H",
+    "Addyson", "Jennifer", "Bethany", "Jinelle", 
+    "Liliana", "Lauren", "Kelly", "Belleh"
+]
+
 KNOWN_CLASSES = ["Y6 101", "Y6 Restore", "Y6 Slow Flow", "Y6 Hot", "Y6 Power", "Y6 Sculpt", "Workshop"]
 
 def parse_time(time_str, date_str):
@@ -27,33 +34,50 @@ def parse_time(time_str, date_str):
     end_dt = datetime.strptime(f"{current_year}-{month:02d}-{day:02d} {end_t.upper()}", "%Y-%m-%d %I:%M%p")
     return start_dt, end_dt
 
-def extract_instructor(lines):
+def extract_instructor(card, lines):
+    # Strategy 1: Look for explicit instructor DOM element
+    for selector in ["[class*='instructor']", "[class*='teacher']", ".instructor", ".teacher"]:
+        el = card.query_selector(selector)
+        if el and el.is_visible():
+            txt = el.inner_text().strip().replace("\xa0", " ")
+            if txt and txt.lower() != "staff":
+                return txt
+
+    # Strategy 2: Match against known studio roster
     for line in lines:
-        cleaned = line.strip()
-        # Look for "Firstname L." format (e.g., "Bethany S.", "Jennifer R.", "Addyson M.")
-        if re.match(r"^[A-Z][a-z]+ [A-Z]\.?$", cleaned):
-            if cleaned.lower() != "staff":
+        cleaned = line.strip().replace("\xa0", " ")
+        for known in KNOWN_INSTRUCTORS:
+            if re.search(rf"\b{known}\b", cleaned, re.IGNORECASE):
+                # Standardize to full roster name if first-name only matched
+                for full_name in ["Addyson M.", "Jennifer R.", "Bethany S.", "Jinelle S.", "Liliana M.", "Lauren K.", "Kelly K.", "Belleh H."]:
+                    if known.lower() in full_name.lower():
+                        return full_name
                 return cleaned
+
+    # Strategy 3: Generalized regex ("First L." or "First Last")
+    for line in lines:
+        cleaned = line.strip().replace("\xa0", " ")
+        if re.match(r"^[A-Z][a-z]+(\s+[A-Z]\.?|\s+[A-Z][a-z]+)$", cleaned):
+            if cleaned.lower() not in ["staff", "class is closed", "book now", "waitlist"]:
+                return cleaned
+
     return None
 
 def extract_title(lines):
     for line in lines:
-        cleaned = line.strip()
-        # Exclude Mobility immediately
+        cleaned = line.strip().replace("\xa0", " ")
         if "mobility" in cleaned.lower():
             return None
-        # Check against recognized class formats
         for valid_cls in KNOWN_CLASSES:
             if valid_cls.lower() in cleaned.lower():
                 return cleaned
     return None
 
 def fetch_schedule():
-    # Map keyed by start_dt isoformat string to prevent simultaneous room conflicts
     slot_events = {}
 
     with sync_playwright() as p:
-        print(f"Navigating to {URL}...")
+        print(f"Connecting to {URL}...")
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
@@ -64,7 +88,7 @@ def fetch_schedule():
         page.wait_for_timeout(3500)
 
         for week in range(2):
-            print(f"Scraping Week {week + 1}...")
+            print(f"Fetching Week {week + 1}...")
             if week > 0:
                 next_btn = page.query_selector("button:has-text('Next Week'), .next-week, [aria-label='Next Week']")
                 if next_btn and next_btn.is_visible():
@@ -79,10 +103,8 @@ def fetch_schedule():
                     tab.click()
                     page.wait_for_timeout(400)
 
-                    # Query only actual class items, avoiding parent wrappers
                     cards = page.query_selector_all(".c-schedule__item, .schedule-item, .c-schedule-item")
                     if not cards:
-                        # Fallback to direct article/item cards if layout changes
                         cards = page.query_selector_all("article, [class*='class-card']")
 
                     for card in cards:
@@ -97,9 +119,8 @@ def fetch_schedule():
                             continue
 
                         time_range = next((l for l in lines if re.search(r"\d+:\d+[ap]m-\d+:\d+[ap]m", l, re.I)), None)
-                        instructor = extract_instructor(lines)
+                        instructor = extract_instructor(card, lines)
 
-                        # Drop if no explicit instructor or if it's Staff
                         if not instructor:
                             continue
 
@@ -107,8 +128,6 @@ def fetch_schedule():
                             start_dt, end_dt = parse_time(time_range, tab_text)
                             if start_dt and end_dt:
                                 time_key = start_dt.isoformat()
-                                
-                                # Single studio room deduplication: Keep the valid instructor session
                                 slot_events[time_key] = {
                                     "title": title,
                                     "instructor": instructor,
@@ -119,7 +138,6 @@ def fetch_schedule():
         browser.close()
 
     events = sorted(slot_events.values(), key=lambda x: x["start"])
-    print(f"Total verified classes captured: {len(events)}")
     return events
 
 def build_ics(events, output_path="public/schedule.ics"):
@@ -176,10 +194,21 @@ def build_ics(events, output_path="public/schedule.ics"):
     lines.append("END:VCALENDAR")
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\r\n".join(lines))
-    print(f"Successfully generated {output_path}")
 
 if __name__ == "__main__":
     os.makedirs("public", exist_ok=True)
     events = fetch_schedule()
+    
+    # Print formatted verification table to terminal
+    print("\n" + "=" * 70)
+    print(f"{'DATE / TIME':<22} | {'INSTRUCTOR':<16} | {'CLASS TYPE'}")
+    print("=" * 70)
+    for ev in events:
+        dt_str = ev['start'].strftime('%a %m/%d %I:%M%p')
+        print(f"{dt_str:<22} | {ev['instructor']:<16} | 🤸‍♂️ {ev['title']}")
+    print("=" * 70)
+    print(f"Total verified events: {len(events)}\n")
+
     if events:
         build_ics(events, output_path="public/schedule.ics")
+        print("Generated public/schedule.ics")
