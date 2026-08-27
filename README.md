@@ -1,5 +1,5 @@
 # YogaSix Arapahoe - Dynamic Calendar Sync 🤸‍♂️
-If you prefer to have the Y6 class schedule on their your personal calendar (Google/Apple Calendar, Outlook, etc) look no further.
+If you prefer to have the Y6 class schedule on your personal calendar (Google/Apple Calendar, Outlook, etc) look no further.
 
 Since Y6 doesn't provide a calendar feed for their class schedule, this automatically fetches the upcoming two-week class schedule from YogaSix Arapahoe twice daily, and then maintains a published `.ics` calendar feed as a `webcal://` subscription!
 
