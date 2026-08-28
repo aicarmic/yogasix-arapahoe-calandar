@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -6,14 +7,16 @@ from datetime import datetime, timedelta, timezone
 LOCATION_SLUG = "yogasix-arapahoe"
 LOCATION_STR = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
 
+# Updated Class Type Emojis
 CLASS_EMOJIS = {
     "Y6 Sculpt": "💪",
     "Y6 Power": "⚡",
     "Y6 Slow Flow": "🌊",
-    "Y6 Restore": "🕯️",
+    "Y6 Restore": "🪔",
     "Y6 Hot": "🔥",
     "Y6 Core": "🎯",
-    "Y6 101": "🔰",
+    "Y6 Mobility": "🤸‍♂️",
+    "Y6 101": "🧘‍♂️",
     "Workshop": "🛠️"
 }
 
@@ -25,12 +28,13 @@ def get_class_emoji(title):
 
 def fetch_schedule_api():
     today = datetime.now()
-    # 45-day coverage: 4 weeks in the past (-28 days) to 2 weeks ahead (+14 days)
+    # 42-day window: 4 weeks historical (-28 days) to 2 weeks future (+14 days)
     start_anchor = today - timedelta(days=28)
     end_anchor = today + timedelta(days=14)
 
     unique_events = {}
     current_start = start_anchor
+    errors = []
 
     while current_start < end_anchor:
         current_end = min(current_start + timedelta(days=7), end_anchor)
@@ -90,12 +94,14 @@ def fetch_schedule_api():
                         "desc": desc_field
                     }
         except Exception as e:
-            print(f"Error fetching chunk {s_str} -> {e_str}: {e}")
+            err_msg = f"Failed chunk {s_str} -> {e_str}: {str(e)}"
+            print(f"Error: {err_msg}")
+            errors.append(err_msg)
 
         current_start = current_end
 
     events = sorted(unique_events.values(), key=lambda x: x["start_dt"])
-    return events
+    return events, errors
 
 def build_ics(events, output_path="public/schedule.ics"):
     lines = [
@@ -149,9 +155,36 @@ def build_ics(events, output_path="public/schedule.ics"):
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\r\n".join(lines))
 
+def write_sync_log(events, errors, log_path="public/sync_status.json"):
+    now = datetime.now(timezone.utc)
+    now_local = datetime.now()
+    
+    past_count = sum(1 for e in events if e["start_dt"].replace(tzinfo=None) < now_local)
+    future_count = len(events) - past_count
+
+    log_data = {
+        "last_sync_utc": now.isoformat(),
+        "status": "success" if not errors else "partial_failure",
+        "total_classes": len(events),
+        "historical_classes_retained": past_count,
+        "upcoming_classes_published": future_count,
+        "errors": errors
+    }
+    
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(log_data, f, indent=2)
+    print(f"Wrote status summary to {log_path}")
+
 if __name__ == "__main__":
     os.makedirs("public", exist_ok=True)
-    events = fetch_schedule_api()
+    events, errors = fetch_schedule_api()
+
+    # If critical failure (zero classes parsed and errors encountered), exit 1 to alert via GitHub Actions
+    if not events and errors:
+        write_sync_log(events, errors)
+        print("CRITICAL: Failed to retrieve schedule entries.")
+        sys.exit(1)
 
     print("\n" + "=" * 80)
     print(f"{'DATE / TIME':<22} | {'INSTRUCTOR':<18} | {'CLASS TYPE'}")
@@ -162,6 +195,6 @@ if __name__ == "__main__":
     print("=" * 80)
     print(f"Total verified events: {len(events)}\n")
 
-    if events:
-        build_ics(events, output_path="public/schedule.ics")
-        print("Generated public/schedule.ics successfully.")
+    build_ics(events, output_path="public/schedule.ics")
+    write_sync_log(events, errors)
+    print("Generated public/schedule.ics successfully.")
