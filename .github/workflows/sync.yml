@@ -2,7 +2,8 @@ name: Sync YogaSix Calendar
 
 on:
   schedule:
-    - cron: '0 10,22 * * *'
+    # Runs hourly from 7:00 AM to 8:00 PM MDT (13:00 to 02:00 UTC)
+    - cron: '0 13-23,0-2 * * *'
   workflow_dispatch:
 
 permissions:
