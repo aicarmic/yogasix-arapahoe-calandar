@@ -2,14 +2,15 @@ name: Sync YogaSix Calendar
 
 on:
   schedule:
-    # Runs hourly from 7:00 AM to 8:00 PM MDT (13:00 to 02:00 UTC)
-    - cron: '0 13-23,0-2 * * *'
+    # Hourly 5:00 AM - 9:00 PM MDT (11:00 - 03:00 UTC), plus midnight MDT (06:00 UTC)
+    - cron: '0 11-23,0-3,6 * * *'
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write # Allows opening alert issues natively
 
 concurrency:
   group: "pages"
@@ -32,6 +33,16 @@ jobs:
 
       - name: Run API Sync
         run: python yogasix.py
+
+      - name: Notify on Schedule Changes
+        if: hashFiles('changes.md') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
+            --body-file changes.md \
+            --assignee "@me"
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
