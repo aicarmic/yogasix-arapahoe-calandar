@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 LOCATION_SLUG = "yogasix-arapahoe"
 LOCATION_STR = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
+PUBLISHED_ICS_URL = "https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics"
 
 # Updated Class Type Emojis
 CLASS_EMOJIS = {
@@ -26,6 +27,100 @@ def get_class_emoji(title):
             return emoji
     return "🤸‍♂️"
 
+def parse_existing_ics(ics_url):
+    """Downloads and parses the current live feed to build a baseline state."""
+    req = urllib.request.Request(ics_url, headers={"User-Agent": "Mozilla/5.0"})
+    existing = {}
+    try:
+        with urllib.request.urlopen(req) as resp:
+            content = resp.read().decode("utf-8")
+    except Exception as e:
+        print(f"Notice: Could not fetch previous ICS ({e}). Skipping baseline diff.")
+        return existing
+
+    events = content.split("BEGIN:VEVENT")
+    for ev in events[1:]:
+        uid_match = None
+        summary_match = None
+        dtstart_match = None
+
+        for line in ev.splitlines():
+            line = line.strip()
+            if line.startswith("UID:"):
+                uid_match = line.replace("UID:", "").replace("@yogasix.local", "").strip()
+            elif line.startswith("SUMMARY:"):
+                summary_match = line.replace("SUMMARY:", "").strip()
+            elif "DTSTART" in line:
+                dtstart_match = line.split(":")[-1].strip()
+
+        if uid_match and summary_match and dtstart_match:
+            existing[uid_match] = {
+                "summary": summary_match,
+                "dtstart": dtstart_match
+            }
+    print(f"Loaded {len(existing)} existing events from published ICS for change tracking.")
+    return existing
+
+def detect_changes(existing_events, new_events):
+    """Identifies modified instructors/titles or cancellations on existing events."""
+    changes = []
+    new_event_map = {e["uid"]: e for e in new_events}
+    now_str = datetime.now().strftime("%Y%m%dT%H%M%S")
+
+    # 1. Detect modifications to existing events
+    for uid, new_ev in new_event_map.items():
+        if uid in existing_events:
+            prev = existing_events[uid]
+            new_summary = f"{new_ev['emoji']} {new_ev['title']} - {new_ev['instructor']}"
+            
+            if prev["summary"] != new_summary:
+                changes.append({
+                    "type": "MODIFIED",
+                    "time": new_ev["start_dt"].strftime("%a %m/%d @ %I:%M%p"),
+                    "old": prev["summary"],
+                    "new": new_summary
+                })
+
+    # 2. Detect cancellations (future events missing from fresh API pull)
+    for uid, prev in existing_events.items():
+        if prev["dtstart"] > now_str and uid not in new_event_map:
+            try:
+                dt = datetime.strptime(prev["dtstart"], "%Y%m%dT%H%M%S")
+                time_display = dt.strftime("%a %m/%d @ %I:%M%p")
+            except Exception:
+                time_display = prev["dtstart"]
+
+            changes.append({
+                "type": "CANCELED",
+                "time": time_display,
+                "old": prev["summary"],
+                "new": "Class Removed / Canceled"
+            })
+
+    return changes
+
+def export_changes_markdown(changes, output_path="changes.md"):
+    if not changes:
+        return
+
+    lines = [
+        "### 🚨 Schedule Modifications Detected\n",
+        "The following existing classes were updated or canceled:\n"
+    ]
+    for c in changes:
+        if c["type"] == "MODIFIED":
+            lines.append(f"- **MODIFIED:** `{c['time']}`")
+            lines.append(f"  - **Previous:** {c['old']}")
+            lines.append(f"  - **Updated:**  {c['new']}\n")
+        elif c["type"] == "CANCELED":
+            lines.append(f"- **CANCELED:** `{c['time']}`")
+            lines.append(f"  - **Was:** {c['old']}\n")
+
+    lines.append(f"\n[View Live Calendar Feed]({PUBLISHED_ICS_URL})")
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"Wrote change details to {output_path}")
+
 def fetch_schedule_api():
     today = datetime.now()
     # 42-day window: 4 weeks historical (-28 days) to 2 weeks future (+14 days)
@@ -38,7 +133,6 @@ def fetch_schedule_api():
 
     while current_start < end_anchor:
         current_end = min(current_start + timedelta(days=7), end_anchor)
-        
         s_str = current_start.strftime("%Y-%m-%d")
         e_str = current_end.strftime("%Y-%m-%d")
         
@@ -70,7 +164,6 @@ def fetch_schedule_api():
                     if not title or not instructor or not start_raw or not end_raw:
                         continue
 
-                    # Filter out Staff placeholder events
                     if instructor.lower() == "staff":
                         continue
 
@@ -150,24 +243,23 @@ def build_ics(events, output_path="public/schedule.ics"):
         ])
 
     lines.append("END:VCALENDAR")
-    
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\r\n".join(lines))
 
-def write_sync_log(events, errors, log_path="public/sync_status.json"):
+def write_sync_log(events, errors, changes, log_path="public/sync_status.json"):
     now = datetime.now(timezone.utc)
     now_local = datetime.now()
-    
     past_count = sum(1 for e in events if e["start_dt"].replace(tzinfo=None) < now_local)
-    future_count = len(events) - past_count
-
+    
     log_data = {
         "last_sync_utc": now.isoformat(),
         "status": "success" if not errors else "partial_failure",
         "total_classes": len(events),
         "historical_classes_retained": past_count,
-        "upcoming_classes_published": future_count,
+        "upcoming_classes_published": len(events) - past_count,
+        "changes_detected": len(changes),
+        "recent_changes": changes,
         "errors": errors
     }
     
@@ -178,13 +270,32 @@ def write_sync_log(events, errors, log_path="public/sync_status.json"):
 
 if __name__ == "__main__":
     os.makedirs("public", exist_ok=True)
+
+    # 1. Clean previous run's change artifact
+    if os.path.exists("changes.md"):
+        os.remove("changes.md")
+
+    # 2. Ingest baseline from published feed
+    existing_events = parse_existing_ics(PUBLISHED_ICS_URL)
+
+    # 3. Pull fresh schedule data
     events, errors = fetch_schedule_api()
 
-    # If critical failure (zero classes parsed and errors encountered), exit 1 to alert via GitHub Actions
+    # 4. Critical failure exit
     if not events and errors:
-        write_sync_log(events, errors)
+        write_sync_log(events, errors, [])
         print("CRITICAL: Failed to retrieve schedule entries.")
         sys.exit(1)
+
+    # 5. Detect and log modifications/cancellations
+    changes = detect_changes(existing_events, events)
+    if changes:
+        print(f"\n[CHANGE DETECTION] Found {len(changes)} event modification(s):")
+        for c in changes:
+            print(f" -> {c['type']}: {c['time']} | {c['old']} => {c['new']}")
+        export_changes_markdown(changes)
+    else:
+        print("\n[CHANGE DETECTION] No modifications to existing classes detected.")
 
     print("\n" + "=" * 80)
     print(f"{'DATE / TIME':<22} | {'INSTRUCTOR':<18} | {'CLASS TYPE'}")
@@ -196,5 +307,5 @@ if __name__ == "__main__":
     print(f"Total verified events: {len(events)}\n")
 
     build_ics(events, output_path="public/schedule.ics")
-    write_sync_log(events, errors)
+    write_sync_log(events, errors, changes)
     print("Generated public/schedule.ics successfully.")
