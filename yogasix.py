@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import json
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -8,7 +9,7 @@ LOCATION_SLUG = "yogasix-arapahoe"
 LOCATION_STR = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
 PUBLISHED_ICS_URL = "https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics"
 
-# Updated Class Type Emojis
+# Specific Class Type Emojis
 CLASS_EMOJIS = {
     "Y6 Sculpt": "💪",
     "Y6 Power": "⚡",
@@ -28,8 +29,18 @@ def get_class_emoji(title):
     return "🤸‍♂️"
 
 def parse_existing_ics(ics_url):
-    """Downloads and parses the current live feed to build a baseline state."""
-    req = urllib.request.Request(ics_url, headers={"User-Agent": "Mozilla/5.0"})
+    """Downloads and parses the current live feed with cache-busting to bypass CDN edge caching."""
+    cache_busted_url = f"{ics_url}?_cb={int(time.time())}"
+    
+    req = urllib.request.Request(
+        cache_busted_url,
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0"
+        }
+    )
     existing = {}
     try:
         with urllib.request.urlopen(req) as resp:
@@ -75,6 +86,7 @@ def detect_changes(existing_events, new_events):
             
             if prev["summary"] != new_summary:
                 changes.append({
+                    "uid": uid,
                     "type": "MODIFIED",
                     "time": new_ev["start_dt"].strftime("%a %m/%d @ %I:%M%p"),
                     "old": prev["summary"],
@@ -91,6 +103,7 @@ def detect_changes(existing_events, new_events):
                 time_display = prev["dtstart"]
 
             changes.append({
+                "uid": uid,
                 "type": "CANCELED",
                 "time": time_display,
                 "old": prev["summary"],
@@ -109,11 +122,11 @@ def export_changes_markdown(changes, output_path="changes.md"):
     ]
     for c in changes:
         if c["type"] == "MODIFIED":
-            lines.append(f"- **MODIFIED:** `{c['time']}`")
+            lines.append(f"- **MODIFIED:** `{c['time']}` (UID: `{c['uid']}`)")
             lines.append(f"  - **Previous:** {c['old']}")
             lines.append(f"  - **Updated:**  {c['new']}\n")
         elif c["type"] == "CANCELED":
-            lines.append(f"- **CANCELED:** `{c['time']}`")
+            lines.append(f"- **CANCELED:** `{c['time']}` (UID: `{c['uid']}`)")
             lines.append(f"  - **Was:** {c['old']}\n")
 
     lines.append(f"\n[View Live Calendar Feed]({PUBLISHED_ICS_URL})")
@@ -164,6 +177,7 @@ def fetch_schedule_api():
                     if not title or not instructor or not start_raw or not end_raw:
                         continue
 
+                    # Filter out Staff placeholder events
                     if instructor.lower() == "staff":
                         continue
 
@@ -271,17 +285,17 @@ def write_sync_log(events, errors, changes, log_path="public/sync_status.json"):
 if __name__ == "__main__":
     os.makedirs("public", exist_ok=True)
 
-    # 1. Clean previous run's change artifact
+    # 1. Clear previous change artifact
     if os.path.exists("changes.md"):
         os.remove("changes.md")
 
-    # 2. Ingest baseline from published feed
+    # 2. Ingest baseline from live published feed
     existing_events = parse_existing_ics(PUBLISHED_ICS_URL)
 
     # 3. Pull fresh schedule data
     events, errors = fetch_schedule_api()
 
-    # 4. Critical failure exit
+    # 4. Critical failure check
     if not events and errors:
         write_sync_log(events, errors, [])
         print("CRITICAL: Failed to retrieve schedule entries.")
