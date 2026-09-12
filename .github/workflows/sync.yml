@@ -10,7 +10,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  issues: write # Allows opening alert issues natively
+  issues: write # Required to check and create alert issues
 
 concurrency:
   group: "pages"
@@ -34,15 +34,35 @@ jobs:
       - name: Run API Sync
         run: python yogasix.py
 
-      - name: Notify on Schedule Changes
+      - name: Notify on Schedule Changes (Deduplicated)
         if: hashFiles('changes.md') != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh issue create \
-            --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
-            --body-file changes.md \
-            --assignee "@me"
+          # Fetch all open issue bodies
+          OPEN_ISSUES=$(gh issue list --state open --limit 50 --json body -q '.[].body' || true)
+
+          # Verify if any change line is truly new or already reported
+          HAS_NEW_CHANGES=false
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^-\ \*\*(MODIFIED|CANCELED):\*\* ]]; then
+              if echo "$OPEN_ISSUES" | grep -F -q "$line"; then
+                echo "Skipping already alerted change: $line"
+              else
+                echo "Found un-notified change: $line"
+                HAS_NEW_CHANGES=true
+              fi
+            fi
+          done < changes.md
+
+          if [ "$HAS_NEW_CHANGES" = true ]; then
+            gh issue create \
+              --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
+              --body-file changes.md \
+              --assignee "@me"
+          else
+            echo "All detected changes already exist in open issues. Skipping duplicate creation."
+          fi
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
