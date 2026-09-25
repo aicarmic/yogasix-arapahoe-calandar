@@ -36,7 +36,7 @@ def load_previous_state():
                 return data
         except Exception as e:
             print(f"[STATE] Error reading {STATE_FILE}: {e}")
-    print("[STATE] No persistent state found. Running in baseline/cold-start mode.")
+    print("[STATE] No persistent state found. Running in baseline mode.")
     return {}
 
 def save_current_state(state):
@@ -61,7 +61,6 @@ def detect_changes(prev_state, new_events):
             prev_summary = prev.get("summary", "")
             last_alerted = prev.get("last_alerted_summary", prev_summary)
 
-            # Fire change only if summary changed AND differs from what we already alerted
             if prev_summary != summary and last_alerted != summary:
                 changes.append({
                     "uid": uid,
@@ -80,7 +79,7 @@ def detect_changes(prev_state, new_events):
             "last_alerted_summary": last_alerted
         }
 
-    # Detect cancellations for future events
+    # Check cancellations
     if not is_cold_start:
         for uid, prev in prev_state.items():
             if prev.get("dtstart", "") > now_str and uid not in new_event_map:
@@ -126,28 +125,34 @@ def export_changes_markdown(changes, output_path="changes.md"):
 
 def fetch_schedule_api():
     today = datetime.now()
-    start_anchor = today - timedelta(days=28)
-    end_anchor = today + timedelta(days=14)
+    
+    # Define overlapping windows:
+    # Window 1: Past history (-28 days to today)
+    # Window 2: Current & Future (today to +21 days)
+    windows = [
+        (today - timedelta(days=28), today + timedelta(days=1)),
+        (today, today + timedelta(days=21))
+    ]
 
     unique_events = {}
-    current_start = start_anchor
     errors = []
 
-    while current_start < end_anchor:
-        current_end = min(current_start + timedelta(days=7), end_anchor)
-        s_str = current_start.strftime("%Y-%m-%d")
-        e_str = current_end.strftime("%Y-%m-%d")
-        
+    for start_dt, end_dt in windows:
+        s_str = start_dt.strftime("%Y-%m-%d")
+        e_str = end_dt.strftime("%Y-%m-%d")
         url = f"https://members.yogasix.com/api/v2/locations/{LOCATION_SLUG}/schedule_entries?start_date={s_str}&end_date={e_str}"
+        print(f"Fetching window: {s_str} to {e_str}")
+
         req = urllib.request.Request(url, headers={
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
             "Accept": "application/json"
         })
 
         try:
-            with urllib.request.urlopen(req) as response:
+            with urllib.request.urlopen(req, timeout=15) as response:
                 data = json.loads(response.read().decode())
                 entries = data.get("schedule_entries", [])
+                print(f" -> Received {len(entries)} entries from API")
                 
                 for entry in entries:
                     entry_id = entry.get("id")
@@ -173,23 +178,23 @@ def fetch_schedule_api():
                         desc_field += f"\\n\\n{clean_desc}"
 
                     emoji = get_class_emoji(title)
-                    s_dt = datetime.fromisoformat(start_raw)
-                    e_dt = datetime.fromisoformat(end_raw)
+                    s_parsed = datetime.fromisoformat(start_raw)
+                    e_parsed = datetime.fromisoformat(end_raw)
 
                     unique_events[entry_id] = {
                         "uid": entry_id,
                         "title": title,
                         "emoji": emoji,
                         "instructor": instructor,
-                        "start_dt": s_dt,
-                        "start_str": s_dt.strftime("%Y%m%dT%H%M%S"),
-                        "end_str": e_dt.strftime("%Y%m%dT%H%M%S"),
+                        "start_dt": s_parsed,
+                        "start_str": s_parsed.strftime("%Y%m%dT%H%M%S"),
+                        "end_str": e_parsed.strftime("%Y%m%dT%H%M%S"),
                         "desc": desc_field
                     }
         except Exception as e:
-            errors.append(f"Failed chunk {s_str} -> {e_str}: {str(e)}")
-
-        current_start = current_end
+            err_msg = f"Failed window {s_str} -> {e_str}: {str(e)}"
+            print(f"Error: {err_msg}")
+            errors.append(err_msg)
 
     events = sorted(unique_events.values(), key=lambda x: x["start_dt"])
     return events, errors
@@ -276,6 +281,7 @@ if __name__ == "__main__":
 
     if not events and errors:
         write_sync_log(events, errors, [])
+        print("CRITICAL: Failed to retrieve schedule entries.")
         sys.exit(1)
 
     changes, new_state = detect_changes(prev_state, events)
@@ -290,4 +296,9 @@ if __name__ == "__main__":
     save_current_state(new_state)
     build_ics(events, output_path="public/schedule.ics")
     write_sync_log(events, errors, changes)
-    print("Sync complete.")
+
+    # Print verification breakdown
+    now_local = datetime.now()
+    upcoming = [e for e in events if e["start_dt"].replace(tzinfo=None) >= now_local]
+    print(f"\nTotal verified events: {len(events)} ({len(upcoming)} upcoming)")
+    print("Generated public/schedule.ics successfully.")
