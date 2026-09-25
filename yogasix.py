@@ -3,9 +3,11 @@ import sys
 import json
 import urllib.request
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 LOCATION_SLUG = "yogasix-arapahoe"
 LOCATION_STR = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
+DENVER_TZ = ZoneInfo("America/Denver")
 
 CLASS_EMOJIS = {
     "Y6 Sculpt": "💪",
@@ -26,19 +28,29 @@ def get_class_emoji(title):
     return "🤸‍♂️"
 
 def fetch_schedule_api():
-    now = datetime.now()
-    # 42-day rolling window: 4 weeks historical (-28 days) to 2 weeks future (+14 days)
-    start_anchor = (now - timedelta(days=28)).date()
-    end_anchor = (now + timedelta(days=14)).date()
+    now_denver = datetime.now(DENVER_TZ)
+    today = now_denver.date()
+
+    # Query 4 weeks back and 3 weeks forward in clean 7-day calendar steps
+    date_ranges = []
+    
+    # Historical (-28 days up to today)
+    for w in range(4, 0, -1):
+        s = today - timedelta(days=w * 7)
+        e = today - timedelta(days=(w - 1) * 7)
+        date_ranges.append((s, e))
+
+    # Current & Future (today up to +21 days)
+    for w in range(0, 3):
+        s = today + timedelta(days=w * 7)
+        e = today + timedelta(days=(w + 1) * 7)
+        date_ranges.append((s, e))
 
     unique_events = {}
-    current_start = start_anchor
 
-    while current_start < end_anchor:
-        current_end = min(current_start + timedelta(days=7), end_anchor)
-        s_str = current_start.strftime("%Y-%m-%d")
-        e_str = current_end.strftime("%Y-%m-%d")
-
+    for s_date, e_date in date_ranges:
+        s_str = s_date.strftime("%Y-%m-%d")
+        e_str = e_date.strftime("%Y-%m-%d")
         url = f"https://members.yogasix.com/api/v2/locations/{LOCATION_SLUG}/schedule_entries?start_date={s_str}&end_date={e_str}"
         print(f"Fetching: {s_str} -> {e_str}")
 
@@ -48,10 +60,11 @@ def fetch_schedule_api():
         })
 
         try:
-            with urllib.request.urlopen(req, timeout=15) as response:
-                data = json.loads(response.read().decode())
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                data = json.loads(resp.read().decode())
                 entries = data.get("schedule_entries", [])
-                
+                print(f"  -> Found {len(entries)} entries")
+
                 for entry in entries:
                     entry_id = entry.get("id")
                     if not entry_id or entry_id in unique_events:
@@ -76,23 +89,23 @@ def fetch_schedule_api():
                         desc_field += f"\\n\\n{clean_desc}"
 
                     emoji = get_class_emoji(title)
-                    s_parsed = datetime.fromisoformat(start_raw)
-                    e_parsed = datetime.fromisoformat(end_raw)
+                    
+                    # Parse ISO with timezone offset (-06:00) and convert to Denver local
+                    s_dt = datetime.fromisoformat(start_raw).astimezone(DENVER_TZ)
+                    e_dt = datetime.fromisoformat(end_raw).astimezone(DENVER_TZ)
 
                     unique_events[entry_id] = {
                         "uid": entry_id,
                         "title": title,
                         "emoji": emoji,
                         "instructor": instructor,
-                        "start_dt": s_parsed,
-                        "start_str": s_parsed.strftime("%Y%m%dT%H%M%S"),
-                        "end_str": e_parsed.strftime("%Y%m%dT%H%M%S"),
+                        "start_dt": s_dt,
+                        "start_str": s_dt.strftime("%Y%m%dT%H%M%S"),
+                        "end_str": e_dt.strftime("%Y%m%dT%H%M%S"),
                         "desc": desc_field
                     }
         except Exception as e:
-            print(f"Error fetching chunk {s_str} -> {e_str}: {e}")
-
-        current_start = current_end
+            print(f"Error fetching range {s_str} -> {e_str}: {e}")
 
     events = sorted(unique_events.values(), key=lambda x: x["start_dt"])
     return events
@@ -144,6 +157,7 @@ def build_ics(events, output_path="public/schedule.ics"):
         ])
 
     lines.append("END:VCALENDAR")
+    
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\r\n".join(lines))
@@ -156,14 +170,17 @@ if __name__ == "__main__":
         print("Error: No events retrieved from API.")
         sys.exit(1)
 
+    now_denver = datetime.now(DENVER_TZ)
+    upcoming = [e for e in events if e["start_dt"] >= now_denver]
+
     print("\n" + "=" * 80)
-    print(f"{'DATE / TIME':<22} | {'INSTRUCTOR':<18} | {'CLASS TYPE'}")
+    print(f"{'DATE / TIME (MDT)':<22} | {'INSTRUCTOR':<18} | {'CLASS TYPE'}")
     print("=" * 80)
     for ev in events:
         dt_str = ev['start_dt'].strftime('%a %m/%d %I:%M%p')
         print(f"{dt_str:<22} | {ev['instructor']:<18} | {ev['emoji']} {ev['title']}")
     print("=" * 80)
-    print(f"Total verified events: {len(events)}\n")
+    print(f"Total events: {len(events)} (Upcoming: {len(upcoming)})\n")
 
     build_ics(events, output_path="public/schedule.ics")
     print("Generated public/schedule.ics successfully.")
