@@ -1,6 +1,5 @@
 import os
 import sys
-import time
 import json
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -8,8 +7,8 @@ from datetime import datetime, timedelta, timezone
 LOCATION_SLUG = "yogasix-arapahoe"
 LOCATION_STR = "6340 S Parker Rd, Unit 2, Aurora, CO 80016"
 PUBLISHED_ICS_URL = "https://aicarmic.github.io/yogasix-arapahoe-calandar/schedule.ics"
+STATE_FILE = "known_events.json"
 
-# Specific Class Type Emojis
 CLASS_EMOJIS = {
     "Y6 Sculpt": "💪",
     "Y6 Power": "⚡",
@@ -28,89 +27,80 @@ def get_class_emoji(title):
             return emoji
     return "🤸‍♂️"
 
-def parse_existing_ics(ics_url):
-    """Downloads and parses the current live feed with cache-busting to bypass CDN edge caching."""
-    cache_busted_url = f"{ics_url}?_cb={int(time.time())}"
-    
-    req = urllib.request.Request(
-        cache_busted_url,
-        headers={
-            "User-Agent": "Mozilla/5.0",
-            "Cache-Control": "no-cache, no-store, must-revalidate",
-            "Pragma": "no-cache",
-            "Expires": "0"
-        }
-    )
-    existing = {}
-    try:
-        with urllib.request.urlopen(req) as resp:
-            content = resp.read().decode("utf-8")
-    except Exception as e:
-        print(f"Notice: Could not fetch previous ICS ({e}). Skipping baseline diff.")
-        return existing
+def load_previous_state():
+    if os.path.exists(STATE_FILE):
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                print(f"[STATE] Loaded {len(data)} events from persistent cache: {STATE_FILE}")
+                return data
+        except Exception as e:
+            print(f"[STATE] Error reading {STATE_FILE}: {e}")
+    print("[STATE] No persistent state found. Running in baseline/cold-start mode.")
+    return {}
 
-    events = content.split("BEGIN:VEVENT")
-    for ev in events[1:]:
-        uid_match = None
-        summary_match = None
-        dtstart_match = None
+def save_current_state(state):
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2, sort_keys=True)
+    print(f"[STATE] Wrote {len(state)} events to {STATE_FILE}")
 
-        for line in ev.splitlines():
-            line = line.strip()
-            if line.startswith("UID:"):
-                uid_match = line.replace("UID:", "").replace("@yogasix.local", "").strip()
-            elif line.startswith("SUMMARY:"):
-                summary_match = line.replace("SUMMARY:", "").strip()
-            elif "DTSTART" in line:
-                dtstart_match = line.split(":")[-1].strip()
-
-        if uid_match and summary_match and dtstart_match:
-            existing[uid_match] = {
-                "summary": summary_match,
-                "dtstart": dtstart_match
-            }
-    print(f"Loaded {len(existing)} existing events from published ICS for change tracking.")
-    return existing
-
-def detect_changes(existing_events, new_events):
-    """Identifies modified instructors/titles or cancellations on existing events."""
+def detect_changes(prev_state, new_events):
     changes = []
+    updated_state = {}
     new_event_map = {e["uid"]: e for e in new_events}
     now_str = datetime.now().strftime("%Y%m%dT%H%M%S")
 
-    # 1. Detect modifications to existing events
+    is_cold_start = len(prev_state) == 0
+
     for uid, new_ev in new_event_map.items():
-        if uid in existing_events:
-            prev = existing_events[uid]
-            new_summary = f"{new_ev['emoji']} {new_ev['title']} - {new_ev['instructor']}"
-            
-            if prev["summary"] != new_summary:
+        summary = f"{new_ev['emoji']} {new_ev['title']} - {new_ev['instructor']}"
+        dtstart = new_ev["start_str"]
+
+        if not is_cold_start and uid in prev_state:
+            prev = prev_state[uid]
+            prev_summary = prev.get("summary", "")
+            last_alerted = prev.get("last_alerted_summary", prev_summary)
+
+            # Fire change only if summary changed AND differs from what we already alerted
+            if prev_summary != summary and last_alerted != summary:
                 changes.append({
                     "uid": uid,
                     "type": "MODIFIED",
                     "time": new_ev["start_dt"].strftime("%a %m/%d @ %I:%M%p"),
-                    "old": prev["summary"],
-                    "new": new_summary
+                    "old": prev_summary,
+                    "new": summary
                 })
+                last_alerted = summary
+        else:
+            last_alerted = summary
 
-    # 2. Detect cancellations (future events missing from fresh API pull)
-    for uid, prev in existing_events.items():
-        if prev["dtstart"] > now_str and uid not in new_event_map:
-            try:
-                dt = datetime.strptime(prev["dtstart"], "%Y%m%dT%H%M%S")
-                time_display = dt.strftime("%a %m/%d @ %I:%M%p")
-            except Exception:
-                time_display = prev["dtstart"]
+        updated_state[uid] = {
+            "summary": summary,
+            "dtstart": dtstart,
+            "last_alerted_summary": last_alerted
+        }
 
-            changes.append({
-                "uid": uid,
-                "type": "CANCELED",
-                "time": time_display,
-                "old": prev["summary"],
-                "new": "Class Removed / Canceled"
-            })
+    # Detect cancellations for future events
+    if not is_cold_start:
+        for uid, prev in prev_state.items():
+            if prev.get("dtstart", "") > now_str and uid not in new_event_map:
+                if not prev.get("alerted_canceled", False):
+                    try:
+                        dt = datetime.strptime(prev["dtstart"], "%Y%m%dT%H%M%S")
+                        time_display = dt.strftime("%a %m/%d @ %I:%M%p")
+                    except Exception:
+                        time_display = prev.get("dtstart", "")
 
-    return changes
+                    changes.append({
+                        "uid": uid,
+                        "type": "CANCELED",
+                        "time": time_display,
+                        "old": prev.get("summary", ""),
+                        "new": "Class Removed / Canceled"
+                    })
+                    prev["alerted_canceled"] = True
+
+    return changes, updated_state
 
 def export_changes_markdown(changes, output_path="changes.md"):
     if not changes:
@@ -136,7 +126,6 @@ def export_changes_markdown(changes, output_path="changes.md"):
 
 def fetch_schedule_api():
     today = datetime.now()
-    # 42-day window: 4 weeks historical (-28 days) to 2 weeks future (+14 days)
     start_anchor = today - timedelta(days=28)
     end_anchor = today + timedelta(days=14)
 
@@ -150,8 +139,6 @@ def fetch_schedule_api():
         e_str = current_end.strftime("%Y-%m-%d")
         
         url = f"https://members.yogasix.com/api/v2/locations/{LOCATION_SLUG}/schedule_entries?start_date={s_str}&end_date={e_str}"
-        print(f"Fetching chunk: {s_str} to {e_str}")
-
         req = urllib.request.Request(url, headers={
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
             "Accept": "application/json"
@@ -177,7 +164,6 @@ def fetch_schedule_api():
                     if not title or not instructor or not start_raw or not end_raw:
                         continue
 
-                    # Filter out Staff placeholder events
                     if instructor.lower() == "staff":
                         continue
 
@@ -201,9 +187,7 @@ def fetch_schedule_api():
                         "desc": desc_field
                     }
         except Exception as e:
-            err_msg = f"Failed chunk {s_str} -> {e_str}: {str(e)}"
-            print(f"Error: {err_msg}")
-            errors.append(err_msg)
+            errors.append(f"Failed chunk {s_str} -> {e_str}: {str(e)}")
 
         current_start = current_end
 
@@ -280,46 +264,30 @@ def write_sync_log(events, errors, changes, log_path="public/sync_status.json"):
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
     with open(log_path, "w", encoding="utf-8") as f:
         json.dump(log_data, f, indent=2)
-    print(f"Wrote status summary to {log_path}")
 
 if __name__ == "__main__":
     os.makedirs("public", exist_ok=True)
 
-    # 1. Clear previous change artifact
     if os.path.exists("changes.md"):
         os.remove("changes.md")
 
-    # 2. Ingest baseline from live published feed
-    existing_events = parse_existing_ics(PUBLISHED_ICS_URL)
-
-    # 3. Pull fresh schedule data
+    prev_state = load_previous_state()
     events, errors = fetch_schedule_api()
 
-    # 4. Critical failure check
     if not events and errors:
         write_sync_log(events, errors, [])
-        print("CRITICAL: Failed to retrieve schedule entries.")
         sys.exit(1)
 
-    # 5. Detect and log modifications/cancellations
-    changes = detect_changes(existing_events, events)
+    changes, new_state = detect_changes(prev_state, events)
     if changes:
-        print(f"\n[CHANGE DETECTION] Found {len(changes)} event modification(s):")
+        print(f"\n[CHANGE DETECTION] Found {len(changes)} new modification(s):")
         for c in changes:
             print(f" -> {c['type']}: {c['time']} | {c['old']} => {c['new']}")
         export_changes_markdown(changes)
     else:
-        print("\n[CHANGE DETECTION] No modifications to existing classes detected.")
+        print("\n[CHANGE DETECTION] No new modifications detected.")
 
-    print("\n" + "=" * 80)
-    print(f"{'DATE / TIME':<22} | {'INSTRUCTOR':<18} | {'CLASS TYPE'}")
-    print("=" * 80)
-    for ev in events:
-        dt_str = ev['start_dt'].strftime('%a %m/%d %I:%M%p')
-        print(f"{dt_str:<22} | {ev['instructor']:<18} | {ev['emoji']} {ev['title']}")
-    print("=" * 80)
-    print(f"Total verified events: {len(events)}\n")
-
+    save_current_state(new_state)
     build_ics(events, output_path="public/schedule.ics")
     write_sync_log(events, errors, changes)
-    print("Generated public/schedule.ics successfully.")
+    print("Sync complete.")
