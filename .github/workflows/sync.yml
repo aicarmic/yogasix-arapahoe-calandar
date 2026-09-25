@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync-and-deploy:
@@ -52,15 +52,35 @@ jobs:
           path: known_events.json
           key: event-state-${{ github.run_id }}
 
-      - name: Notify on Schedule Changes
+      - name: Notify on Schedule Changes (Deduplicated)
         if: hashFiles('changes.md') != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh issue create \
-            --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
-            --body-file changes.md \
-            --assignee "@me"
+          # Fetch open issue bodies
+          OPEN_ISSUES=$(gh issue list --state open --limit 50 --json body -q '.[].body' || true)
+
+          HAS_NEW_CHANGES=false
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^-\ \*\*(MODIFIED|CANCELED):\*\* ]]; then
+              # Use -e to prevent leading hyphens from being parsed as flags
+              if echo "$OPEN_ISSUES" | grep -F -q -e "$line"; then
+                echo "Skipping already alerted change: $line"
+              else
+                echo "Found un-notified change: $line"
+                HAS_NEW_CHANGES=true
+              fi
+            fi
+          done < changes.md
+
+          if [ "$HAS_NEW_CHANGES" = true ]; then
+            # Removed --assignee flag to resolve GitHub App token restriction
+            gh issue create \
+              --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
+              --body-file changes.md
+          else
+            echo "All detected changes already exist in open issues. Skipping duplicate creation."
+          fi
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
