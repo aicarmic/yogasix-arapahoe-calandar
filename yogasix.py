@@ -90,9 +90,9 @@ def fetch_schedule_api():
 
                     emoji = get_class_emoji(title)
                     
-                    # Parse ISO with timezone offset (-06:00) and convert to Denver local
-                    s_dt = datetime.fromisoformat(start_raw).astimezone(DENVER_TZ)
-                    e_dt = datetime.fromisoformat(end_raw).astimezone(DENVER_TZ)
+                    # NEW: Strip the server offset, keep wall-clock time, attach America/Denver
+                    s_dt = datetime.fromisoformat(start_raw).replace(tzinfo=None).replace(tzinfo=DENVER_TZ)
+                    e_dt = datetime.fromisoformat(end_raw).replace(tzinfo=None).replace(tzinfo=DENVER_TZ)
 
                     unique_events[entry_id] = {
                         "uid": entry_id,
