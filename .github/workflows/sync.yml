@@ -7,9 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write # Needed to commit baseline_schedule.json
   pages: write
   id-token: write
+  issues: write   # Needed to open alert issues
 
 concurrency:
   group: "pages"
@@ -30,17 +31,41 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run API Sync
+      - name: 1. Generate Calendar Feed
         run: python yogasix.py
 
-      - name: Setup GitHub Pages
+      - name: 2. Check for Schedule Changes
+        run: python detect_changes.py
+
+      - name: 3. Commit Updated State
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add baseline_schedule.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update baseline state [skip ci]"
+            git push origin HEAD:${{ github.ref }}
+          else
+            echo "Baseline state unchanged."
+          fi
+
+      - name: 4. Notify on Schedule Changes
+        if: hashFiles('changes.md') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Schedule Change Detected: $(date -u +'%Y-%m-%d %H:%M UTC')" \
+            --body-file changes.md
+
+      - name: 5. Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages Artifact
+      - name: 6. Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'public'
 
-      - name: Deploy to GitHub Pages
+      - name: 7. Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
