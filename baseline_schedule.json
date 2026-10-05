@@ -349,6 +349,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
+  "cr_100027189@yogasix.local": {
+    "dtstart": "20261025T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
+  },
   "cr_100027253@yogasix.local": {
     "dtstart": "20261010T090000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
@@ -374,6 +379,11 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
     "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
   },
+  "cr_100027465@yogasix.local": {
+    "dtstart": "20261025T163000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
+    "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
+  },
   "cr_100379600@yogasix.local": {
     "dtstart": "20261016T183000",
     "last_alerted": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle S.",
@@ -388,11 +398,6 @@
     "dtstart": "20261023T120000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Rachel P.",
     "summary": "\ud83c\udfaf Y6 Core - Rachel P."
-  },
-  "cr_94277972@yogasix.local": {
-    "dtstart": "20260906T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
   },
   "cr_94277973@yogasix.local": {
     "dtstart": "20260913T103000",
@@ -421,6 +426,11 @@
   },
   "cr_94277978@yogasix.local": {
     "dtstart": "20261018T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
+  },
+  "cr_94277979@yogasix.local": {
+    "dtstart": "20261025T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
   },
@@ -588,11 +598,6 @@
     "dtstart": "20260930T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
-  },
-  "cr_98282052@yogasix.local": {
-    "dtstart": "20260906T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
   "cr_98282053@yogasix.local": {
     "dtstart": "20260913T090000",
