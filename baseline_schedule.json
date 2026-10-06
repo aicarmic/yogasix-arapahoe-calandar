@@ -14,6 +14,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
+  "cr_100026287@yogasix.local": {
+    "dtstart": "20261026T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
+  },
   "cr_100026342@yogasix.local": {
     "dtstart": "20261005T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
@@ -26,6 +31,11 @@
   },
   "cr_100026344@yogasix.local": {
     "dtstart": "20261019T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
+  },
+  "cr_100026345@yogasix.local": {
+    "dtstart": "20261026T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
   },
@@ -44,6 +54,11 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
     "summary": "\u26a1 Y6 Power Flow - Lauren K."
   },
+  "cr_100026389@yogasix.local": {
+    "dtstart": "20261026T173000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
+    "summary": "\u26a1 Y6 Power Flow - Lauren K."
+  },
   "cr_100026415@yogasix.local": {
     "dtstart": "20261005T190000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
@@ -56,6 +71,11 @@
   },
   "cr_100026417@yogasix.local": {
     "dtstart": "20261019T190000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
+  },
+  "cr_100026418@yogasix.local": {
+    "dtstart": "20261026T190000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
   },
@@ -433,11 +453,6 @@
     "dtstart": "20261025T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
-  },
-  "cr_98280712@yogasix.local": {
-    "dtstart": "20260907T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Bethany S.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Bethany S."
   },
   "cr_98280713@yogasix.local": {
     "dtstart": "20260914T073000",
@@ -888,10 +903,5 @@
     "dtstart": "20260912T120000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
     "summary": "\ud83c\udfaf Y6 Core - Addyson M."
-  },
-  "cr_99844569@yogasix.local": {
-    "dtstart": "20260907T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Bethany S."
   }
 }
