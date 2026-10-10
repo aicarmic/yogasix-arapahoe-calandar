@@ -339,6 +339,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
+  "cr_100027039@yogasix.local": {
+    "dtstart": "20261030T090000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
+  },
   "cr_100027048@yogasix.local": {
     "dtstart": "20261002T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
@@ -356,6 +361,11 @@
   },
   "cr_100027051@yogasix.local": {
     "dtstart": "20261023T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_100027052@yogasix.local": {
+    "dtstart": "20261030T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
@@ -473,6 +483,11 @@
     "dtstart": "20261023T120000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Rachel P.",
     "summary": "\ud83c\udfaf Y6 Core - Rachel P."
+  },
+  "cr_100665109@yogasix.local": {
+    "dtstart": "20261030T163000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
   "cr_94277973@yogasix.local": {
     "dtstart": "20260913T103000",
@@ -674,11 +689,6 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M."
   },
-  "cr_98282570@yogasix.local": {
-    "dtstart": "20260911T090000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
   "cr_98282571@yogasix.local": {
     "dtstart": "20260918T090000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
@@ -688,11 +698,6 @@
     "dtstart": "20260925T090000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
-  "cr_98282647@yogasix.local": {
-    "dtstart": "20260911T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
-    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
   "cr_98282648@yogasix.local": {
     "dtstart": "20260918T103000",
@@ -893,11 +898,6 @@
     "dtstart": "20261027T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M."
-  },
-  "cr_99785148@yogasix.local": {
-    "dtstart": "20260911T163000",
-    "last_alerted": "\ud83d\udee0\ufe0f Workshop 75 (Free for Members) - Jennifer R.",
-    "summary": "\ud83d\udee0\ufe0f Workshop 75 (Free for Members) - Jennifer R."
   },
   "cr_99785288@yogasix.local": {
     "dtstart": "20260912T120000",
