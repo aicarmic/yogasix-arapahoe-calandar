@@ -409,6 +409,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
+  "cr_100027040@yogasix.local": {
+    "dtstart": "20261106T090000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
+  },
   "cr_100027048@yogasix.local": {
     "dtstart": "20261002T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
@@ -431,6 +436,11 @@
   },
   "cr_100027052@yogasix.local": {
     "dtstart": "20261030T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_100027053@yogasix.local": {
+    "dtstart": "20261106T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
@@ -734,20 +744,10 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M."
   },
-  "cr_98282571@yogasix.local": {
-    "dtstart": "20260918T090000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
   "cr_98282572@yogasix.local": {
     "dtstart": "20260925T090000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
-  "cr_98282648@yogasix.local": {
-    "dtstart": "20260918T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
-    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
   "cr_98282649@yogasix.local": {
     "dtstart": "20260925T103000",
@@ -868,11 +868,6 @@
     "dtstart": "20260926T090000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
     "summary": "\ud83c\udfaf Y6 Core - Addyson M."
-  },
-  "cr_99744312@yogasix.local": {
-    "dtstart": "20260918T163000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
   "cr_99745051@yogasix.local": {
     "dtstart": "20261006T190000",
