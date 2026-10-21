@@ -144,6 +144,11 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
+  "cr_100026445@yogasix.local": {
+    "dtstart": "20261110T090000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
+    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
+  },
   "cr_100026471@yogasix.local": {
     "dtstart": "20261006T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Jennifer R.",
@@ -169,6 +174,11 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Jennifer R.",
     "summary": "\ud83e\ude94 Y6 Restore - Jennifer R."
   },
+  "cr_100026482@yogasix.local": {
+    "dtstart": "20261110T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Jennifer R.",
+    "summary": "\ud83e\ude94 Y6 Restore - Jennifer R."
+  },
   "cr_100026508@yogasix.local": {
     "dtstart": "20261006T173000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
@@ -191,6 +201,11 @@
   },
   "cr_100026515@yogasix.local": {
     "dtstart": "20261103T173000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
+  },
+  "cr_100026517@yogasix.local": {
+    "dtstart": "20261110T173000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
   },
@@ -699,20 +714,10 @@
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
   },
-  "cr_98281192@yogasix.local": {
-    "dtstart": "20260922T173000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
-  },
   "cr_98281193@yogasix.local": {
     "dtstart": "20260929T173000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
-  },
-  "cr_98281313@yogasix.local": {
-    "dtstart": "20260922T190000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M."
   },
   "cr_98281314@yogasix.local": {
     "dtstart": "20260929T190000",
@@ -794,20 +799,10 @@
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
   },
-  "cr_98304577@yogasix.local": {
-    "dtstart": "20260922T090000",
-    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
-    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
-  },
   "cr_98304578@yogasix.local": {
     "dtstart": "20260929T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
-  },
-  "cr_98304672@yogasix.local": {
-    "dtstart": "20260922T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Jennifer R.",
-    "summary": "\ud83e\ude94 Y6 Restore - Jennifer R."
   },
   "cr_98304673@yogasix.local": {
     "dtstart": "20260929T103000",
@@ -828,11 +823,6 @@
     "dtstart": "20260924T173000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
     "summary": "\ud83c\udfaf Y6 Core - Addyson M."
-  },
-  "cr_99491711@yogasix.local": {
-    "dtstart": "20260922T053000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
   },
   "cr_99491712@yogasix.local": {
     "dtstart": "20260929T053000",
@@ -864,6 +854,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
   },
+  "cr_99491718@yogasix.local": {
+    "dtstart": "20261110T053000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
+  },
   "cr_99567005@yogasix.local": {
     "dtstart": "20260926T090000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
@@ -891,6 +886,11 @@
   },
   "cr_99745055@yogasix.local": {
     "dtstart": "20261103T190000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M."
+  },
+  "cr_99745056@yogasix.local": {
+    "dtstart": "20261110T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M."
   }
