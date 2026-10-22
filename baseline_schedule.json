@@ -234,6 +234,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
+  "cr_100026547@yogasix.local": {
+    "dtstart": "20261111T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
+  },
   "cr_100026578@yogasix.local": {
     "dtstart": "20261007T163000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
@@ -259,6 +264,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
   },
+  "cr_100026583@yogasix.local": {
+    "dtstart": "20261111T163000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
+  },
   "cr_100026620@yogasix.local": {
     "dtstart": "20261007T173000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
@@ -281,6 +291,11 @@
   },
   "cr_100026630@yogasix.local": {
     "dtstart": "20261104T173000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
+  },
+  "cr_100026631@yogasix.local": {
+    "dtstart": "20261111T173000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
@@ -659,6 +674,11 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
+  "cr_101425500@yogasix.local": {
+    "dtstart": "20261111T190000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
   "cr_94277975@yogasix.local": {
     "dtstart": "20260927T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
@@ -724,30 +744,15 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Addyson M."
   },
-  "cr_98281654@yogasix.local": {
-    "dtstart": "20260923T163000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
-  },
   "cr_98281655@yogasix.local": {
     "dtstart": "20260930T163000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
   },
-  "cr_98281746@yogasix.local": {
-    "dtstart": "20260923T173000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
-  },
   "cr_98281747@yogasix.local": {
     "dtstart": "20260930T173000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
-  },
-  "cr_98281881@yogasix.local": {
-    "dtstart": "20260923T190000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
   },
   "cr_98281882@yogasix.local": {
     "dtstart": "20260930T190000",
@@ -808,11 +813,6 @@
     "dtstart": "20260929T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Jennifer R.",
     "summary": "\ud83e\ude94 Y6 Restore - Jennifer R."
-  },
-  "cr_98304714@yogasix.local": {
-    "dtstart": "20260923T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
   "cr_98304715@yogasix.local": {
     "dtstart": "20260930T090000",
