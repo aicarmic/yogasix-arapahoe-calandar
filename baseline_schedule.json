@@ -469,6 +469,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
+  "cr_100027041@yogasix.local": {
+    "dtstart": "20261113T090000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
+  },
   "cr_100027048@yogasix.local": {
     "dtstart": "20261002T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
@@ -496,6 +501,11 @@
   },
   "cr_100027053@yogasix.local": {
     "dtstart": "20261106T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_100027054@yogasix.local": {
+    "dtstart": "20261113T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
@@ -783,16 +793,6 @@
     "dtstart": "20260927T163000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M."
-  },
-  "cr_98282572@yogasix.local": {
-    "dtstart": "20260925T090000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
-  "cr_98282649@yogasix.local": {
-    "dtstart": "20260925T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
-    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
   "cr_98282977@yogasix.local": {
     "dtstart": "20260926T073000",
