@@ -539,6 +539,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
   },
+  "cr_100027098@yogasix.local": {
+    "dtstart": "20261114T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
+  },
   "cr_100027143@yogasix.local": {
     "dtstart": "20261003T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
@@ -551,6 +556,11 @@
   },
   "cr_100027147@yogasix.local": {
     "dtstart": "20261031T090000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
+    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
+  },
+  "cr_100027149@yogasix.local": {
+    "dtstart": "20261114T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
@@ -583,6 +593,11 @@
     "dtstart": "20261107T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
+  },
+  "cr_100027170@yogasix.local": {
+    "dtstart": "20261114T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
   },
   "cr_100027185@yogasix.local": {
     "dtstart": "20261004T090000",
@@ -794,16 +809,6 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Liliana M."
   },
-  "cr_98282977@yogasix.local": {
-    "dtstart": "20260926T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
-  },
-  "cr_98283037@yogasix.local": {
-    "dtstart": "20260926T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
-  },
   "cr_98304578@yogasix.local": {
     "dtstart": "20260929T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
@@ -853,11 +858,6 @@
     "dtstart": "20261110T053000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
-  },
-  "cr_99567005@yogasix.local": {
-    "dtstart": "20260926T090000",
-    "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
-    "summary": "\ud83c\udfaf Y6 Core - Addyson M."
   },
   "cr_99745051@yogasix.local": {
     "dtstart": "20261006T190000",
