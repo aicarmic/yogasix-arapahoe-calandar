@@ -29,6 +29,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
+  "cr_100026290@yogasix.local": {
+    "dtstart": "20261116T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
+  },
   "cr_100026342@yogasix.local": {
     "dtstart": "20261005T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
@@ -56,6 +61,11 @@
   },
   "cr_100026347@yogasix.local": {
     "dtstart": "20261109T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
+  },
+  "cr_100026348@yogasix.local": {
+    "dtstart": "20261116T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
   },
@@ -89,6 +99,11 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
     "summary": "\u26a1 Y6 Power Flow - Lauren K."
   },
+  "cr_100026392@yogasix.local": {
+    "dtstart": "20261116T173000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
+    "summary": "\u26a1 Y6 Power Flow - Lauren K."
+  },
   "cr_100026415@yogasix.local": {
     "dtstart": "20261005T190000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
@@ -116,6 +131,11 @@
   },
   "cr_100026420@yogasix.local": {
     "dtstart": "20261109T190000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
+  },
+  "cr_100026421@yogasix.local": {
+    "dtstart": "20261116T190000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
   },
@@ -768,26 +788,6 @@
     "dtstart": "20261115T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Belleh H.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Belleh H."
-  },
-  "cr_98280715@yogasix.local": {
-    "dtstart": "20260928T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Bethany S.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Bethany S."
-  },
-  "cr_98281010@yogasix.local": {
-    "dtstart": "20260928T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
-  },
-  "cr_98281057@yogasix.local": {
-    "dtstart": "20260928T173000",
-    "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
-    "summary": "\u26a1 Y6 Power Flow - Lauren K."
-  },
-  "cr_98281140@yogasix.local": {
-    "dtstart": "20260928T190000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
   },
   "cr_98281193@yogasix.local": {
     "dtstart": "20260929T173000",
