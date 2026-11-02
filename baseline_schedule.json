@@ -634,11 +634,6 @@
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
   },
-  "cr_100027185@yogasix.local": {
-    "dtstart": "20261004T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
-  },
   "cr_100027186@yogasix.local": {
     "dtstart": "20261011T090000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
@@ -669,6 +664,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
+  "cr_100027193@yogasix.local": {
+    "dtstart": "20261122T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
+  },
   "cr_100027253@yogasix.local": {
     "dtstart": "20261010T090000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
@@ -678,11 +678,6 @@
     "dtstart": "20261024T090000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
     "summary": "\ud83c\udfaf Y6 Core - Addyson M."
-  },
-  "cr_100027462@yogasix.local": {
-    "dtstart": "20261004T163000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
-    "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
   },
   "cr_100027463@yogasix.local": {
     "dtstart": "20261011T163000",
@@ -713,6 +708,11 @@
     "dtstart": "20261115T163000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
     "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
+  },
+  "cr_100027469@yogasix.local": {
+    "dtstart": "20261122T163000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Amy V.",
+    "summary": "\ud83e\ude94 Y6 Restore - Amy V."
   },
   "cr_100379600@yogasix.local": {
     "dtstart": "20261016T183000",
@@ -794,11 +794,6 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Jennifer R."
   },
-  "cr_94277976@yogasix.local": {
-    "dtstart": "20261004T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
-  },
   "cr_94277977@yogasix.local": {
     "dtstart": "20261011T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
@@ -826,6 +821,11 @@
   },
   "cr_94277982@yogasix.local": {
     "dtstart": "20261115T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Belleh H.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Belleh H."
+  },
+  "cr_94277983@yogasix.local": {
+    "dtstart": "20261122T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Belleh H.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Belleh H."
   },
