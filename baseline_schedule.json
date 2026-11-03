@@ -1,9 +1,4 @@
 {
-  "cr_100026283@yogasix.local": {
-    "dtstart": "20261005T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
-  },
   "cr_100026284@yogasix.local": {
     "dtstart": "20261012T090000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
@@ -34,10 +29,10 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
-  "cr_100026342@yogasix.local": {
-    "dtstart": "20261005T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
+  "cr_100026291@yogasix.local": {
+    "dtstart": "20261123T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
   "cr_100026343@yogasix.local": {
     "dtstart": "20261012T073000",
@@ -69,10 +64,10 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
   },
-  "cr_100026386@yogasix.local": {
-    "dtstart": "20261005T173000",
-    "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
-    "summary": "\u26a1 Y6 Power Flow - Lauren K."
+  "cr_100026349@yogasix.local": {
+    "dtstart": "20261123T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Jennifer R.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Jennifer R."
   },
   "cr_100026387@yogasix.local": {
     "dtstart": "20261012T173000",
@@ -104,10 +99,10 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
     "summary": "\u26a1 Y6 Power Flow - Lauren K."
   },
-  "cr_100026415@yogasix.local": {
-    "dtstart": "20261005T190000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
+  "cr_100026393@yogasix.local": {
+    "dtstart": "20261123T173000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Lauren K.",
+    "summary": "\u26a1 Y6 Power Flow - Lauren K."
   },
   "cr_100026416@yogasix.local": {
     "dtstart": "20261012T190000",
@@ -136,6 +131,11 @@
   },
   "cr_100026421@yogasix.local": {
     "dtstart": "20261116T190000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
+  },
+  "cr_100026422@yogasix.local": {
+    "dtstart": "20261123T190000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Lauren K.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Lauren K."
   },
@@ -352,22 +352,22 @@
   "cr_100026864@yogasix.local": {
     "dtstart": "20261007T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
   },
   "cr_100026865@yogasix.local": {
     "dtstart": "20261014T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
   },
   "cr_100026866@yogasix.local": {
     "dtstart": "20261021T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
   },
   "cr_100026867@yogasix.local": {
     "dtstart": "20261028T190000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S."
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
   },
   "cr_100026883@yogasix.local": {
     "dtstart": "20261008T090000",
@@ -717,7 +717,7 @@
   "cr_100379600@yogasix.local": {
     "dtstart": "20261016T183000",
     "last_alerted": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle S.",
-    "summary": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle S."
+    "summary": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle"
   },
   "cr_100665109@yogasix.local": {
     "dtstart": "20261030T163000",
@@ -797,22 +797,22 @@
   "cr_94277977@yogasix.local": {
     "dtstart": "20261011T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle"
   },
   "cr_94277978@yogasix.local": {
     "dtstart": "20261018T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle"
   },
   "cr_94277979@yogasix.local": {
     "dtstart": "20261025T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle"
   },
   "cr_94277980@yogasix.local": {
     "dtstart": "20261101T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle S."
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle"
   },
   "cr_94277981@yogasix.local": {
     "dtstart": "20261108T103000",
