@@ -244,11 +244,6 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
   },
-  "cr_100026542@yogasix.local": {
-    "dtstart": "20261007T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
-  },
   "cr_100026543@yogasix.local": {
     "dtstart": "20261014T090000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
@@ -279,10 +274,10 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
-  "cr_100026578@yogasix.local": {
-    "dtstart": "20261007T163000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
+  "cr_100026549@yogasix.local": {
+    "dtstart": "20261125T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
   "cr_100026579@yogasix.local": {
     "dtstart": "20261014T163000",
@@ -314,10 +309,10 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
   },
-  "cr_100026620@yogasix.local": {
-    "dtstart": "20261007T173000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
+  "cr_100026585@yogasix.local": {
+    "dtstart": "20261125T163000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mix: Slow Jams - Jennifer R."
   },
   "cr_100026627@yogasix.local": {
     "dtstart": "20261014T173000",
@@ -349,10 +344,10 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
-  "cr_100026864@yogasix.local": {
-    "dtstart": "20261007T190000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
+  "cr_100026633@yogasix.local": {
+    "dtstart": "20261125T173000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
   },
   "cr_100026865@yogasix.local": {
     "dtstart": "20261014T190000",
@@ -781,6 +776,11 @@
   },
   "cr_101425501@yogasix.local": {
     "dtstart": "20261118T190000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_101425502@yogasix.local": {
+    "dtstart": "20261125T190000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
