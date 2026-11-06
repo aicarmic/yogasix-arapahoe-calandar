@@ -364,11 +364,6 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Themed Class (60 min) - Jinelle"
   },
-  "cr_100026883@yogasix.local": {
-    "dtstart": "20261008T090000",
-    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
-    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
-  },
   "cr_100026884@yogasix.local": {
     "dtstart": "20261015T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
@@ -384,11 +379,6 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
-  "cr_100026918@yogasix.local": {
-    "dtstart": "20261008T103000",
-    "last_alerted": "\ud83e\uddd8\u200d\u2642\ufe0f Y6 101 - Jennifer R.",
-    "summary": "\ud83e\uddd8\u200d\u2642\ufe0f Y6 101 - Jennifer R."
-  },
   "cr_100026919@yogasix.local": {
     "dtstart": "20261015T103000",
     "last_alerted": "\ud83e\uddd8\u200d\u2642\ufe0f Y6 101 - Jennifer R.",
@@ -403,11 +393,6 @@
     "dtstart": "20261029T103000",
     "last_alerted": "\ud83e\uddd8\u200d\u2642\ufe0f Y6 101 - Jennifer R.",
     "summary": "\ud83e\uddd8\u200d\u2642\ufe0f Y6 101 - Jennifer R."
-  },
-  "cr_100026965@yogasix.local": {
-    "dtstart": "20261008T173000",
-    "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
-    "summary": "\ud83c\udfaf Y6 Core - Addyson M."
   },
   "cr_100026966@yogasix.local": {
     "dtstart": "20261015T173000",
@@ -438,11 +423,6 @@
     "dtstart": "20261119T173000",
     "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
     "summary": "\ud83c\udfaf Y6 Core - Addyson M."
-  },
-  "cr_100027001@yogasix.local": {
-    "dtstart": "20261008T190000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
-    "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
   },
   "cr_100027002@yogasix.local": {
     "dtstart": "20261015T190000",
@@ -793,6 +773,16 @@
     "dtstart": "20261120T163000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Mobility - Jennifer R."
+  },
+  "cr_101750214@yogasix.local": {
+    "dtstart": "20261126T073000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Jennifer R."
+  },
+  "cr_101750220@yogasix.local": {
+    "dtstart": "20261126T090000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
   },
   "cr_94277977@yogasix.local": {
     "dtstart": "20261011T103000",
