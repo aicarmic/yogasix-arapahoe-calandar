@@ -454,11 +454,6 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Stacy K.",
     "summary": "\ud83e\ude94 Y6 Restore - Stacy K."
   },
-  "cr_100027036@yogasix.local": {
-    "dtstart": "20261009T090000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
   "cr_100027037@yogasix.local": {
     "dtstart": "20261016T090000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
@@ -489,10 +484,10 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
-  "cr_100027049@yogasix.local": {
-    "dtstart": "20261009T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
-    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  "cr_100027043@yogasix.local": {
+    "dtstart": "20261127T090000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
   "cr_100027050@yogasix.local": {
     "dtstart": "20261016T103000",
@@ -521,6 +516,11 @@
   },
   "cr_100027055@yogasix.local": {
     "dtstart": "20261120T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_100027056@yogasix.local": {
+    "dtstart": "20261127T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
