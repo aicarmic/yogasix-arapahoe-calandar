@@ -524,11 +524,6 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
-  "cr_100027093@yogasix.local": {
-    "dtstart": "20261010T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
-  },
   "cr_100027094@yogasix.local": {
     "dtstart": "20261017T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
@@ -559,6 +554,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
   },
+  "cr_100027100@yogasix.local": {
+    "dtstart": "20261128T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
+  },
   "cr_100027145@yogasix.local": {
     "dtstart": "20261017T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
@@ -574,10 +574,10 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
-  "cr_100027165@yogasix.local": {
-    "dtstart": "20261010T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
+  "cr_100027151@yogasix.local": {
+    "dtstart": "20261128T090000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
+    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
   "cr_100027166@yogasix.local": {
     "dtstart": "20261017T103000",
@@ -608,6 +608,11 @@
     "dtstart": "20261121T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
+  },
+  "cr_100027172@yogasix.local": {
+    "dtstart": "20261128T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
   },
   "cr_100027186@yogasix.local": {
     "dtstart": "20261011T090000",
@@ -643,11 +648,6 @@
     "dtstart": "20261122T090000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
-  },
-  "cr_100027253@yogasix.local": {
-    "dtstart": "20261010T090000",
-    "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
-    "summary": "\ud83c\udfaf Y6 Core - Addyson M."
   },
   "cr_100027261@yogasix.local": {
     "dtstart": "20261024T090000",
