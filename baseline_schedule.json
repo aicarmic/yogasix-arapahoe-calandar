@@ -439,11 +439,6 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Stacy K.",
     "summary": "\ud83e\ude94 Y6 Restore - Stacy K."
   },
-  "cr_100027037@yogasix.local": {
-    "dtstart": "20261016T090000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
-  },
   "cr_100027038@yogasix.local": {
     "dtstart": "20261023T090000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
@@ -474,10 +469,10 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
-  "cr_100027050@yogasix.local": {
-    "dtstart": "20261016T103000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
-    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  "cr_100027044@yogasix.local": {
+    "dtstart": "20261204T090000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Belleh H.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Belleh H."
   },
   "cr_100027051@yogasix.local": {
     "dtstart": "20261023T103000",
@@ -506,6 +501,11 @@
   },
   "cr_100027056@yogasix.local": {
     "dtstart": "20261127T103000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
+    "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
+  },
+  "cr_100027057@yogasix.local": {
+    "dtstart": "20261204T103000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
@@ -678,11 +678,6 @@
     "dtstart": "20261129T163000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Amy V.",
     "summary": "\ud83e\ude94 Y6 Restore - Amy V."
-  },
-  "cr_100379600@yogasix.local": {
-    "dtstart": "20261016T183000",
-    "last_alerted": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle S.",
-    "summary": "\ud83d\udee0\ufe0f Workshop 60 (Free for Members) - Jinelle"
   },
   "cr_100665109@yogasix.local": {
     "dtstart": "20261030T163000",
