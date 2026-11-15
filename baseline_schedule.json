@@ -509,11 +509,6 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
-  "cr_100027094@yogasix.local": {
-    "dtstart": "20261017T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
-  },
   "cr_100027095@yogasix.local": {
     "dtstart": "20261024T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
@@ -544,10 +539,10 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
   },
-  "cr_100027145@yogasix.local": {
-    "dtstart": "20261017T090000",
-    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
-    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
+  "cr_100027101@yogasix.local": {
+    "dtstart": "20261205T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
   },
   "cr_100027147@yogasix.local": {
     "dtstart": "20261031T090000",
@@ -564,10 +559,10 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
     "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
-  "cr_100027166@yogasix.local": {
-    "dtstart": "20261017T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
+  "cr_100027152@yogasix.local": {
+    "dtstart": "20261205T090000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Nicole F.",
+    "summary": "\u26a1 Y6 Power Flow - Nicole F."
   },
   "cr_100027167@yogasix.local": {
     "dtstart": "20261024T103000",
@@ -598,6 +593,11 @@
     "dtstart": "20261128T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
+  },
+  "cr_100027173@yogasix.local": {
+    "dtstart": "20261205T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
   },
   "cr_100027187@yogasix.local": {
     "dtstart": "20261018T090000",
