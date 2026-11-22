@@ -494,11 +494,6 @@
     "last_alerted": "\ud83e\ude94 Y6 Restore - Belleh H.",
     "summary": "\ud83e\ude94 Y6 Restore - Belleh H."
   },
-  "cr_100027095@yogasix.local": {
-    "dtstart": "20261024T073000",
-    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
-    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
-  },
   "cr_100027096@yogasix.local": {
     "dtstart": "20261031T073000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
@@ -529,6 +524,11 @@
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
   },
+  "cr_100027102@yogasix.local": {
+    "dtstart": "20261212T073000",
+    "last_alerted": "\ud83d\udcaa Y6 Sculpt - Addyson M.",
+    "summary": "\ud83d\udcaa Y6 Sculpt - Addyson M."
+  },
   "cr_100027147@yogasix.local": {
     "dtstart": "20261031T090000",
     "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
@@ -549,10 +549,10 @@
     "last_alerted": "\u26a1 Y6 Power Flow - Nicole F.",
     "summary": "\u26a1 Y6 Power Flow - Nicole F."
   },
-  "cr_100027167@yogasix.local": {
-    "dtstart": "20261024T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
+  "cr_100027153@yogasix.local": {
+    "dtstart": "20261212T090000",
+    "last_alerted": "\u26a1 Y6 Power Flow - Jennifer R.",
+    "summary": "\u26a1 Y6 Power Flow - Jennifer R."
   },
   "cr_100027168@yogasix.local": {
     "dtstart": "20261031T103000",
@@ -583,6 +583,11 @@
     "dtstart": "20261205T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Nicole F.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Nicole F."
+  },
+  "cr_100027174@yogasix.local": {
+    "dtstart": "20261212T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
   },
   "cr_100027189@yogasix.local": {
     "dtstart": "20261025T090000",
@@ -628,11 +633,6 @@
     "dtstart": "20261208T053000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
-  },
-  "cr_100027261@yogasix.local": {
-    "dtstart": "20261024T090000",
-    "last_alerted": "\ud83c\udfaf Y6 Core - Addyson M.",
-    "summary": "\ud83c\udfaf Y6 Core - Addyson M."
   },
   "cr_100027465@yogasix.local": {
     "dtstart": "20261025T163000",
@@ -788,6 +788,11 @@
     "dtstart": "20261126T090000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
+  },
+  "cr_103573350@yogasix.local": {
+    "dtstart": "20261212T120000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f The Y6 Experience - Call to Book - Jennifer R.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f The Y6 Experience - Call to Book - Jennifer R."
   },
   "cr_94277979@yogasix.local": {
     "dtstart": "20261025T103000",
