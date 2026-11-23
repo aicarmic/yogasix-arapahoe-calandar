@@ -589,11 +589,6 @@
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jennifer R.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Jennifer R."
   },
-  "cr_100027189@yogasix.local": {
-    "dtstart": "20261025T090000",
-    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
-    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
-  },
   "cr_100027190@yogasix.local": {
     "dtstart": "20261101T090000",
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
@@ -624,6 +619,11 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
   },
+  "cr_100027196@yogasix.local": {
+    "dtstart": "20261213T090000",
+    "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S.",
+    "summary": "\ud83e\udd38\u200d\u2642\ufe0f Y6 Signature Hot - Bethany S."
+  },
   "cr_100027207@yogasix.local": {
     "dtstart": "20261201T053000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
@@ -633,11 +633,6 @@
     "dtstart": "20261208T053000",
     "last_alerted": "\ud83d\udcaa Y6 Sculpt - Rachel P.",
     "summary": "\ud83d\udcaa Y6 Sculpt - Rachel P."
-  },
-  "cr_100027465@yogasix.local": {
-    "dtstart": "20261025T163000",
-    "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
-    "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
   },
   "cr_100027466@yogasix.local": {
     "dtstart": "20261101T163000",
@@ -666,6 +661,11 @@
   },
   "cr_100027471@yogasix.local": {
     "dtstart": "20261206T163000",
+    "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
+    "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
+  },
+  "cr_100027472@yogasix.local": {
+    "dtstart": "20261213T163000",
     "last_alerted": "\ud83e\ude94 Y6 Restore - Liliana M.",
     "summary": "\ud83e\ude94 Y6 Restore - Liliana M."
   },
@@ -794,11 +794,6 @@
     "last_alerted": "\ud83e\udd38\u200d\u2642\ufe0f The Y6 Experience - Call to Book - Jennifer R.",
     "summary": "\ud83e\udd38\u200d\u2642\ufe0f The Y6 Experience - Call to Book - Jennifer R."
   },
-  "cr_94277979@yogasix.local": {
-    "dtstart": "20261025T103000",
-    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
-    "summary": "\ud83c\udf0a Y6 Slow Flow - Jinelle"
-  },
   "cr_94277980@yogasix.local": {
     "dtstart": "20261101T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Jinelle S.",
@@ -826,6 +821,11 @@
   },
   "cr_94277985@yogasix.local": {
     "dtstart": "20261206T103000",
+    "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Belleh H.",
+    "summary": "\ud83c\udf0a Y6 Slow Flow - Belleh H."
+  },
+  "cr_94277986@yogasix.local": {
+    "dtstart": "20261213T103000",
     "last_alerted": "\ud83c\udf0a Y6 Slow Flow - Belleh H.",
     "summary": "\ud83c\udf0a Y6 Slow Flow - Belleh H."
   },
